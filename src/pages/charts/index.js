@@ -1,13 +1,18 @@
 import React from "react";
 import Chart from "react-google-charts";
+import { Icon } from "antd";
 
 const Charts = () => (
-  <div style={{ display: "flex", maxWidth: 900 }}>
+  <div style={{ display: "flex", justifyContent: "center" }}>
     <Chart
       width={300}
       height={300}
       chartType="ColumnChart"
-      loader={<div>Loading Chart</div>}
+      loader={
+        <div style={{ display: "flex" }}>
+          <Icon type="loading" />
+        </div>
+      }
       data={[
         ["City", "2010 Population", "2000 Population"],
         ["New York City, NY", 8175000, 8008000],

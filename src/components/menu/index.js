@@ -1,6 +1,7 @@
 import React from "react";
 import { Menu, Icon, Dropdown, Avatar, message } from "antd";
 import { BrowserRouter as Link } from "react-router-dom";
+import { DropdownStyle } from "./styles";
 
 const { SubMenu } = Menu;
 
@@ -66,18 +67,11 @@ class Nav extends React.Component {
             Gráficos
           </a>
         </Menu.Item>
-        <Menu.Item key="charts">
-          <a href="/">
-            <Icon type="logout" />
-            Sair
-          </a>
-        </Menu.Item>
-        <Dropdown
-          overlay={menu}
-          style={{ position: "absolute", bottom: 0, right: 0 }}
-        >
-          <Avatar size={30} icon="user" />
-        </Dropdown>
+        <DropdownStyle>
+          <Dropdown overlay={menu}>
+            <Avatar size={30} icon="user" />
+          </Dropdown>
+        </DropdownStyle>
       </Menu>
     );
   }
