@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Charts from "./pages/charts";
+import Login from "./pages/login";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         </nav>
 
         <Route path="/charts" exact component={Charts} />
+        <Route path="/login" exact component={Login} />
       </div>
     </Router>
   );
