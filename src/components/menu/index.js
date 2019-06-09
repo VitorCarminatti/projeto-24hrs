@@ -1,31 +1,26 @@
 import React from "react";
 import { Menu, Icon, Dropdown, Avatar, message } from "antd";
-import { BrowserRouter as Link } from "react-router-dom";
 import { DropdownStyle } from "./styles";
 
 const { SubMenu } = Menu;
 
-function handleButtonClick(e) {
-  message.info("Click on left button.");
-  console.log("click left button", e);
-}
-
 function handleMenuClick(e) {
-  message.info("Click on menu item.");
-  console.log("click", e);
+  if (e.key === "logout") {
+    message.info("Logout com sucesso!");
+  }
 }
 
 const menu = (
   <Menu onClick={handleMenuClick}>
-    <Menu.Item key="1">
+    <Menu.Item key="user">
       <Icon type="user" />
       Perfil
     </Menu.Item>
-    <Menu.Item key="2">
+    <Menu.Item key="setting">
       <Icon type="setting" />
       Configuração
     </Menu.Item>
-    <Menu.Item key="3">
+    <Menu.Item key="logout">
       <Icon type="logout" />
       Sair
     </Menu.Item>
