@@ -12,15 +12,21 @@ class Dashboard extends React.Component {
 
     this.state = {
       collapsed: false,
-      dados: []
+      dados: [],
+      maquina: ""
     };
 
     this.onChange = this.onChange.bind(this);
   }
 
+  componentDidMount() {
+    const prom = api.get("/api/error_data");
+    prom.then(dado => this.setState({ dados: dado.data }));
+  }
+
   onChange(value) {
     const prom = api.get(`/api/error_data?maquina=${value}`);
-    prom.then(dado => this.setState({ dados: dado.data }));
+    prom.then(dado => this.setState({ dados: dado.data, maquina: value }));
   }
 
   montaArrayDados(dados) {
@@ -32,7 +38,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { dados } = this.state;
+    const { dados, maquina } = this.state;
     return (
       <React.Fragment>
         <Menu />
@@ -74,7 +80,7 @@ class Dashboard extends React.Component {
                 : this.montaArrayDados(dados)
             }
             options={{
-              title: "Quantidade de erros por tipo"
+              title: `Quantidade de erros por tipo da máquina ${maquina}`
             }}
             rootProps={{ "data-testid": "1" }}
           />
