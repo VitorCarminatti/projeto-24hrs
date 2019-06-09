@@ -1,8 +1,7 @@
 import React from "react";
 import { Menu, Icon, Dropdown, Avatar, message } from "antd";
 import { DropdownStyle } from "./styles";
-
-const { SubMenu } = Menu;
+import { logout } from "../../services/auth";
 
 function handleMenuClick(e) {
   if (e.key === "logout") {

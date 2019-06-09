@@ -20,7 +20,7 @@ class Login extends React.Component {
       try {
         const response = await api.post("/login", { email, password });
         login(response.data.token);
-        this.props.history.push("/app");
+        this.props.history.push("/dashboard");
       } catch (err) {
         this.setState({
           error: "Houve um problema com o login, verifique suas credenciais."

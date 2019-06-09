@@ -4,13 +4,8 @@ import { getToken } from "./auth";
 const api = axios.create({
   baseURL: "http://192.168.192.29/projeto-24-horas-api",
   headers: {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "X-Requested-With": "XMLHttpRequest"
-  },
-  withCredentials: true,
-  credential: "same-origin",
-  mode: "no-cors"
+    "Content-Type": "application/json"
+  }
 });
 
 api.interceptors.request.use(async config => {
