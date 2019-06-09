@@ -1,20 +1,14 @@
 import React from "react";
 import { Card, Col, Row, Descriptions } from "antd";
-import api from "../../services/api";
 import Menu from "../../components/menu";
 
 class Dashboard extends React.Component {
-  state = {
-    collapsed: false
-  };
+  constructor(props) {
+    super(props);
 
-  componentDidMount() {
-    api
-      .get("/api/production_data")
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(e => console.log(e));
+    this.state = {
+      collapsed: false
+    };
   }
 
   render() {
@@ -25,13 +19,13 @@ class Dashboard extends React.Component {
           <div style={{ background: "#ECECEC", padding: "30px" }}>
             <Row gutter={16}>
               <Col span={8}>
-                <Card title="Equipamentos" bordered={false}>
-                  20
+                <Card title="Tempo Calendário" bordered={false}>
+                  100
                 </Card>
               </Col>
               <Col span={8}>
-                <Card title="Perdas" bordered={false}>
-                  500
+                <Card title="Tempo disponível" bordered={false}>
+                  100
                 </Card>
               </Col>
               <Col span={8}>
