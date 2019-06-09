@@ -1,27 +1,47 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { Form, Icon, Input, Button, Checkbox, Alert } from "antd";
 import { LoginWrapper, LinksWrapper } from "./styles";
+import api from "../../services/api";
+import { login } from "../../services/auth";
 
 class Login extends React.Component {
   state = {
     email: "",
-    senha: ""
+    password: "",
+    error: ""
   };
 
-  handleSubmit = e => {
-    console.log(e);
+  handleSubmit = async e => {
+    e.preventDefault();
+    const { email, password } = this.state;
+    if (!email || !password) {
+      this.setState({ error: "Preencha e-mail e senha para continuar!" });
+    } else {
+      try {
+        const response = await api.post("/login", { email, password });
+        login(response.data.token);
+        this.props.history.push("/app");
+      } catch (err) {
+        this.setState({
+          error: "Houve um problema com o login, verifique suas credenciais."
+        });
+      }
+    }
   };
 
   render() {
     return (
       <LoginWrapper>
         <h1>Login</h1>
+        {this.state.error && (
+          <Alert message={this.state.error} type="error" showIcon />
+        )}
         <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
             <Input
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
               placeholder="Email"
-              onChange={() => this.handleChange(this)}
+              onChange={e => this.setState({ email: e.target.value })}
             />
           </Form.Item>
           <Form.Item>
@@ -29,7 +49,7 @@ class Login extends React.Component {
               prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
               type="password"
               placeholder="Senha"
-              onChange={() => this.handleChange()}
+              onChange={e => this.setState({ password: e.target.value })}
             />
           </Form.Item>
           <Form.Item>
